@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
 def display_top_menu
-	puts "============================================="
-	puts "== RUBY INTERACTIVE CALCULATOR (ric)       =="
-	puts "============================================="
-	puts "== Menu: (1) Basic  (2) Advanced  (q) Quit =="
-	puts "============================================="
+	puts "======================================================="
+	puts "== RUBY INTERACTIVE CALCULATOR (ric)                 =="
+	puts "======================================================="
+	puts "== Menu: (1) Basic  (2) Advanced  (3) Trip  (q) Quit =="
+	puts "======================================================="
 	puts "Mode: " + $mode.capitalize
 end
 
@@ -23,6 +23,24 @@ def display_advanced_menu
 	puts " type: exp  N1 N2 => N1 ** N2"
 	puts "       root N1 N2 => N1 ** (1/N2)"
 	print "ric:> "
+end
+
+def trip_calc
+	# Get values
+	print "Distance - How far will you drive? "
+	distance = gets.chomp.to_f
+	print "MPG - What is the fuel efficiency of the car? "
+	mpg = gets.chomp.to_f
+	print "CPG - How much does gas cost per gallon? "
+	cpg = gets.chomp.to_f
+	print "Speed - How fast will you drive? "
+	speed = gets.chomp.to_f
+	# Calculations
+	time = distance / speed
+	cost = (distance / mpg) * cpg
+	puts "======================================================="
+	puts "== Your trip will take %g hours and cost $%g." % [time, cost]
+	display_top_menu
 end
 
 def display_result(answer)
@@ -61,6 +79,8 @@ def determine_mode(user_input)
 		$mode = "basic"
 	when '2'
 		$mode = "advanced"
+	when '3'
+		$mode = "trip"
 	when 'q'
 	end
 end
@@ -88,6 +108,7 @@ def determine_operation(user_input)
 	when 'q'
 	when '1'
 	when '2'
+	when '3'
 	else
 		puts "Unknown operation, or operation unnspecified.  Please try again"
 	end
@@ -108,6 +129,8 @@ until user_input.downcase == "q" do
 		display_basic_menu
 	when 'advanced' then
 		display_advanced_menu
+	when 'trip' then
+		trip_calc
 	else
 		# Unknown key pressed
 	end
