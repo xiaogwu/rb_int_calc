@@ -4,7 +4,7 @@ def display_top_menu
 	puts "============================================="
 	puts "== RUBY INTERACTIVE CALCULATOR (ric)       =="
 	puts "============================================="
-	puts "== Menu: (1) Basic  (2) Advanced  (Q) Quit =="
+	puts "== Menu: (1) Basic  (2) Advanced  (q) Quit =="
 	puts "============================================="
 	puts "Mode: " + $mode.capitalize
 end
@@ -25,16 +25,28 @@ def display_advanced_menu
 	print "ric:> "
 end
 
-def determine_operation(user_input)
-	# First check to see if there was a mode change
+def determine_mode(user_input)
 	case user_input.downcase
 	when '1'
 		$mode = "basic"
 	when '2'
 		$mode = "advanced"
 	end
+end
 
-	puts user_input.downcase
+def determine_operation(user_input)
+	oper_values = user_input.downcase.split
+	# puts oper_values
+	operation = oper_values[0]
+	value1 = oper_values[1]
+	value2 = oper_values[2]
+	
+	case operation
+	when 'add'
+		add(value1, value2)
+	else
+	end
+
 end
 
 ### START ###
@@ -56,6 +68,8 @@ until user_input.downcase == "q" do
 	end
 	# Get user input
 	user_input = gets.chomp
+	# First check to see if there was a mode change
+	determine_mode(user_input)
 	# Determine operation
 	determine_operation(user_input)
 end
