@@ -44,7 +44,7 @@ def trip_calc
 end
 
 def display_result(answer)
-	puts "============================================="
+	puts "======================================================="
 	puts "== >>> Result: %g " % answer.to_s
 end
 
