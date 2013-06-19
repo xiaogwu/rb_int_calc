@@ -21,8 +21,38 @@ end
 def display_advanced_menu
 	puts "Usage:"
 	puts " type: exp  N1 N2 => N1 ** N2"
-	puts "       sqrt N1 N2 => N1 ** (1/N2)"
+	puts "       root N1 N2 => N1 ** (1/N2)"
 	print "ric:> "
+end
+
+def display_result(answer)
+	puts "============================================="
+	puts "== >>> Result: %g " % answer.to_s
+end
+
+# Math display methods
+def add(n1, n2)
+	display_result(n1.to_f + n2.to_f)
+end
+
+def sub(n1, n2)
+	display_result(n1.to_f - n2.to_f)
+end
+
+def mul(n1, n2)
+	display_result(n1.to_f * n2.to_f)
+end
+
+def div(n1, n2)
+	display_result(n1.to_f / n2.to_f)
+end
+
+def exp(n1, n2)
+	display_result(n1.to_f ** n2.to_f)
+end
+
+def root(n1, n2)
+	display_result(n1.to_f ** (1/n2.to_f))
 end
 
 def determine_mode(user_input)
@@ -31,6 +61,7 @@ def determine_mode(user_input)
 		$mode = "basic"
 	when '2'
 		$mode = "advanced"
+	when 'q'
 	end
 end
 
@@ -44,7 +75,21 @@ def determine_operation(user_input)
 	case operation
 	when 'add'
 		add(value1, value2)
+	when 'sub'
+		sub(value1, value2)
+	when 'mul'
+		mul(value1, value2)
+	when 'div'
+		div(value1, value2)
+	when 'exp'
+		exp(value1, value2)
+	when 'root'
+		root(value1, value2)
+	when 'q'
+	when '1'
+	when '2'
 	else
+		puts "Unknown operation, or operation unnspecified.  Please try again"
 	end
 
 end
